@@ -1,0 +1,1 @@
+start "putty" "C:\Program Files\PuTTY\putty.exe" -ssh 127.0.0.1:33335
