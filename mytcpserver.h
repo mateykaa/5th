@@ -3,7 +3,6 @@
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
-
 #include <QtNetwork>
 #include <QByteArray>
 #include <QDebug>
@@ -20,7 +19,6 @@ public:
 public slots:
     void slotNewConnection();
     void slotClientDisconnected();
-
     void slotServerRead();
     //void slotReadClient();
 

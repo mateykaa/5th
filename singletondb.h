@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QSqlRecord>
 #include <QString>
+#include <vector>
 
 class SingletonDB;
 class SingletonDBDestroyer
@@ -32,7 +33,7 @@ class SingletonDB
     protected:
         SingletonDB(){
             db = QSqlDatabase::addDatabase("QSQLITE");
-            db.setDatabaseName("C:/others/code/5th/13 25/Users.db");
+            db.setDatabaseName("C:/others/code/5th/iiii/13 25/Users.db"); // "C:\others\code\5th\iiii\13 25\Users.db"
             if (!db.open())
                 qDebug()<<"not connecting to the database"<<db.lastError().text();
             else {
@@ -43,11 +44,11 @@ class SingletonDB
         SingletonDB(const SingletonDB&);
         SingletonDB& operator = (SingletonDB &);
 
-        ~SingletonDB(){db.close();};
+        ~SingletonDB(){db.close();}
         friend class SingletonDBDestroyer;
 
     public:
-        static SingletonDB* getInstance(){ // connect db
+        static SingletonDB* getInstance(){
             if (!p_instance)
             {
                 p_instance = new SingletonDB();
@@ -55,11 +56,7 @@ class SingletonDB
             }
             return p_instance;
         }
-
-        QString send_query(QString query);
-
-        void add_user(QString login, QString password, QString email);
-        void login_user(QString login, QString password);
+        void close_db();
 };
 
 #endif // SINGLETONDB_H
