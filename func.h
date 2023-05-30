@@ -87,7 +87,6 @@ QString reg(QString login,QString password, QString email){
 QString get_stat(QString login){
     SingletonDB *db = SingletonDB::getInstance();
     QSqlQuery query;
-//    QByteArray log = lognow.toUtf8();
     QString name_from_db, task1_from_db, task2_from_db, task3_from_db, task4_from_db, task5_from_db;
 
     int task = login.toInt();
@@ -105,8 +104,7 @@ QString get_stat(QString login){
 
     while(query.next())
         name_from_db = query.value(nameIndex).toString(), task1_from_db = query.value(task1Index).toString(),
-                task2_from_db = query.value(task2Index).toString(), task3_from_db = query.value(task3Index).toString(), task4_from_db = query.value(task3Index).toString(),
-                    task5_from_db = query.value(task3Index).toString();
+                task2_from_db = query.value(task2Index).toString(), task3_from_db = query.value(task3Index).toString(), task4_from_db = query.value(task3Index).toString(), task5_from_db = query.value(task3Index).toString();
         qDebug()<<name_from_db <<"\t"<<task1_from_db<<task2_from_db<<task3_from_db<<task4_from_db<<task5_from_db << "\n";
 
 
