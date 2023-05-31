@@ -72,10 +72,10 @@ QString reg(QString login,QString password, QString email){
          const int passwordIndex = rec.indexOf("password");
          const int emailIndex = rec.indexOf("email");
 
-         while(query.next())
+         while(query.next()){
              log_from_db = query.value(loginIndex).toString(), pass_from_db = query.value(passwordIndex).toString(), email_from_db = query.value(emailIndex).toString();
              qDebug()<<log_from_db <<"\t"<<pass_from_db<<"\t" << email_from_db << "\n";
-
+        }
          if (login == log_from_db && password == pass_from_db && email == email_from_db)
          {
               stat = "You have been successfully registered! ";
@@ -102,11 +102,12 @@ QString get_stat(QString login){
     const int task4Index = rec.indexOf("task4");
     const int task5Index = rec.indexOf("task5");
 
-    while(query.next())
+    while(query.next()){
         name_from_db = query.value(nameIndex).toString(), task1_from_db = query.value(task1Index).toString(),
                 task2_from_db = query.value(task2Index).toString(), task3_from_db = query.value(task3Index).toString(),
                     task4_from_db = query.value(task4Index).toString(), task5_from_db = query.value(task5Index).toString();
         qDebug()<<name_from_db <<"\t"<<task1_from_db<<task2_from_db<<task3_from_db<<task4_from_db<<task5_from_db << "\n";
+    }
     QString stat = "getstat = "+name_from_db+" 1."+task1_from_db+" 2."+task2_from_db+" 3."+task3_from_db+" 4."+task4_from_db+" 5."+task5_from_db;
     return stat;
 }
@@ -117,7 +118,7 @@ QString upd_stat(QString login, QString task_num, QString task_status_t){
     QString task_status = task_status_t.trimmed();
     int taskValues = task_num.toInt();
     qDebug() << login << task_num << task_status;
-    QByteArray log = login.toUtf8();
+    QString log = login.toUtf8();
 
     switch(taskValues){
     case 1:
@@ -176,41 +177,60 @@ QString get_task(QString task_num){
     }
 }
 
+QString get_stat_all(QString getstatall){
+
+    return "";
+}
+
+QString check_task_answer(){
+
+    return "";
+}
+
+
 QString parsing(QString source_str){
     QStringList data = source_str.split(' ', Qt::SkipEmptyParts);
 
-    if (data[0] == "auth")
-    { if (data.count() !=3){
+    if (data[0] == "auth"){
+        if (data.count() !=3){
             QByteArray res;
             res.append("Error auth");
             return res;
         }
-    else {
-        return authorization(data[1],data[2]);
-    }
+        else {
+            return authorization(data[1],data[2]);
+        }
     }
 
-    else if (data[0] == "reg")
-    { if (data.count() !=4){
+    else if (data[0] == "reg"){
+        if (data.count() !=4){
             QByteArray res;
             res.append("Error reg");
             return res;
         }
-    else {
+        else {
         return reg(data[1],data[2],data[3]);
-    }
+        }
     }
 
     else if (data[0] == "getstat"){
         return get_stat(data[1]);
     }
 
-    else if (data[0] == "updstat"){//upd stat - будет форма upd_stat login task(1/2/3/4/5) +/-балл
+    else if (data[0] == "updstat"){
         return upd_stat(data[1],data[2],data[3]);
     }
 
     else if (data[0] == "gettask"){
         return get_task(data[1]);
+    }
+
+    else if (data[0] == "getstatall"){
+        return get_stat_all(data[0]);
+    }
+
+    else if (data[0] == "checktaskans"){
+        return check_task_answer();
     }
 
     else return "error parsing/n";
