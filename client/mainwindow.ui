@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>760</width>
+    <height>431</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>6</y>
+      <width>711</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="spacing">
+      <number>7</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="log_label">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Task1_pushButton">
+         <property name="text">
+          <string>Задача 1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Task2_pushButton">
+         <property name="text">
+          <string>Задача 2</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Task3_pushButton">
+         <property name="text">
+          <string>Задача 3</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Task4_pushButton">
+         <property name="text">
+          <string>Задача 4</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Task5_pushButton">
+         <property name="text">
+          <string>Задача 5</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="Stat_label">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; text-decoration: underline;&quot;&gt;Статистика&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Задача 1 &lt;/p&gt;&lt;p&gt;Задача 2 &lt;/p&gt;&lt;p&gt;Задача 3 &lt;/p&gt;&lt;p&gt;Задача 4 &lt;/p&gt;&lt;p&gt;Задача 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="Exit_pushButton">
+         <property name="text">
+          <string>Выход</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>760</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Меню</string>
+    </property>
+    <addaction name="Task1_action"/>
+    <addaction name="Task2_action"/>
+    <addaction name="Task3_action"/>
+    <addaction name="Task4_action"/>
+    <addaction name="Task5_action"/>
+    <addaction name="Exit_action"/>
+   </widget>
+   <widget class="QMenu" name="about_menu">
+    <property name="title">
+     <string>О программе</string>
+    </property>
+    <addaction name="about_action"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="about_menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="Task1_action">
+   <property name="text">
+    <string>Задача 1</string>
+   </property>
+  </action>
+  <action name="Task2_action">
+   <property name="text">
+    <string>Задача 2</string>
+   </property>
+  </action>
+  <action name="Task3_action">
+   <property name="text">
+    <string>Задача 3</string>
+   </property>
+  </action>
+  <action name="Task4_action">
+   <property name="text">
+    <string>Задача 4</string>
+   </property>
+  </action>
+  <action name="Task5_action">
+   <property name="text">
+    <string>Задача 5</string>
+   </property>
+  </action>
+  <action name="Exit_action">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="about_action">
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>Exit_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>379</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
