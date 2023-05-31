@@ -6,6 +6,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <singletondb.h>
+#include <tasks.h>
 
 QString authorization(QString login,QString password){
     qDebug()<<"login="<<login<<"pass="<<password.trimmed();
@@ -87,11 +88,10 @@ QString reg(QString login,QString password, QString email){
 QString get_stat(QString login){
     SingletonDB *db = SingletonDB::getInstance();
     QSqlQuery query;
-    QString name_from_db, task1_from_db, task2_from_db, task3_from_db, task4_from_db, task5_from_db;
 
-    int task = login.toInt();
+    QString name_from_db, task1_from_db, task2_from_db, task3_from_db, task4_from_db, task5_from_db;
     query.prepare("SELECT * FROM user WHERE login == :login");
-    query.bindValue(":login",login);
+    query.bindValue(":login",login.trimmed());
     query.exec();
 
     QSqlRecord rec = query.record();
@@ -104,47 +104,78 @@ QString get_stat(QString login){
 
     while(query.next())
         name_from_db = query.value(nameIndex).toString(), task1_from_db = query.value(task1Index).toString(),
-                task2_from_db = query.value(task2Index).toString(), task3_from_db = query.value(task3Index).toString(), task4_from_db = query.value(task3Index).toString(), task5_from_db = query.value(task3Index).toString();
+                task2_from_db = query.value(task2Index).toString(), task3_from_db = query.value(task3Index).toString(),
+                    task4_from_db = query.value(task4Index).toString(), task5_from_db = query.value(task5Index).toString();
         qDebug()<<name_from_db <<"\t"<<task1_from_db<<task2_from_db<<task3_from_db<<task4_from_db<<task5_from_db << "\n";
-
-
+    QString stat = "getstat = "+name_from_db+" 1."+task1_from_db+" 2."+task2_from_db+" 3."+task3_from_db+" 4."+task4_from_db+" 5."+task5_from_db;
+    return stat;
 }
 
-QString upd_stat(QString login, QString task, QString stat){
+QString upd_stat(QString login, QString task_num, QString task_status_t){
     SingletonDB *db = SingletonDB::getInstance();
     QSqlQuery query;
-    int taskValues = task.toInt();
-    qDebug() << login;
+    QString task_status = task_status_t.trimmed();
+    int taskValues = task_num.toInt();
+    qDebug() << login << task_num << task_status;
     QByteArray log = login.toUtf8();
 
     switch(taskValues){
     case 1:
-        query.prepare("UPDATE statistic "
+        query.prepare("UPDATE User "
                       "SET task1 = :task1 "
                       "WHERE login == :login");
-        query.bindValue(":login",login);
-        query.bindValue(":task1",stat);
+        query.bindValue(":login",log);
+        query.bindValue(":task1",task_status);
         query.exec();
         break;
     case 2:
-        query.prepare("UPDATE statistic "
+        query.prepare("UPDATE User "
                       "SET task2 = :task2 "
                       "WHERE login == :login");
-        query.bindValue(":task2",stat);
-        query.bindValue(":login",login);
+        query.bindValue(":login",log);
+        query.bindValue(":task2",task_status);
         query.exec();
         break;
     case 3:
-        query.prepare("UPDATE statistic "
+        query.prepare("UPDATE User "
                       "SET task3 = :task3 "
                       "WHERE login == :login");
-        query.bindValue(":login",login);
-        query.bindValue(":task3",stat);
+        query.bindValue(":login",log);
+        query.bindValue(":task3",task_status);
+        query.exec();
+        break;
+    case 4:
+        query.prepare("UPDATE User "
+                      "SET task4 = :task3 "
+                      "WHERE login == :login");
+        query.bindValue(":login",log);
+        query.bindValue(":task4",task_status);
+        query.exec();
+        break;
+    case 5:
+        query.prepare("UPDATE User "
+                      "SET task5 = :task5 "
+                      "WHERE login == :login");
+        query.bindValue(":login",log);
+        query.bindValue(":task5",task_status);
         query.exec();
         break;
     }
     return "Status probably has been updated";
 }
+
+QString get_task(QString task_num){
+    int task = task_num.toInt();
+    switch (task) {
+    case 1: {Task1(); break;}
+    case 2: {Task2(); break;}
+    case 3: {Task3(); break;}
+    case 4: {Task4(); break;}
+    case 5: {Task5(); break;}
+    default: {Task5(); break;}
+    }
+}
+
 QString parsing(QString source_str){
     QStringList data = source_str.split(' ', Qt::SkipEmptyParts);
 
@@ -176,6 +207,10 @@ QString parsing(QString source_str){
 
     else if (data[0] == "updstat"){//upd stat - будет форма upd_stat login task(1/2/3/4/5) +/-балл
         return upd_stat(data[1],data[2],data[3]);
+    }
+
+    else if (data[0] == "gettask"){
+        return get_task(data[1]);
     }
 
     else return "error parsing/n";
