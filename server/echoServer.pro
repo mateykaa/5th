@@ -20,8 +20,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     mytcpserver.cpp \
-    singletondb.cpp \
-    tasks.cpp
+    singletondb.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,5 +30,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     func.h \
     mytcpserver.h \
-    singletondb.h \
-    tasks.h
+    singletondb.h

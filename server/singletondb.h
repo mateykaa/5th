@@ -33,7 +33,7 @@ class SingletonDB
     protected:
         SingletonDB(){
             db = QSqlDatabase::addDatabase("QSQLITE");
-            db.setDatabaseName("C:/others/code/5th/iiii/13 25/Users.db"); // "C:\others\code\5th\iiii\13 25\Users.db"
+            db.setDatabaseName("C:/others/code/проект на c++/13 25/Users.db"); //
             if (!db.open())
                 qDebug()<<"not connecting to the database"<<db.lastError().text();
             else {
@@ -57,6 +57,13 @@ class SingletonDB
             return p_instance;
         }
         void close_db();
+
+        void unlogin(QString login){
+            QSqlQuery query;
+            query.prepare("UPDATE User SET socket=NULL WHERE login=:login");
+            query.bindValue(":login",login);
+            query.exec();
+        }
 };
 
 #endif // SINGLETONDB_H

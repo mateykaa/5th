@@ -1,8 +1,19 @@
+/*!
+\file
+\brief Файл для сервера
+
+Файл с действиями сервера
+*/
 #include <QDebug>
 #include <QCoreApplication>
 #include "mytcpserver.h"
-#include <func.h>
+#include "C:/others/code/project/1325/func.h"
 
+/*!
+\brief Деструктор
+
+Деструктор закрывает соединение
+*/
 MyTcpServer::~MyTcpServer()
 {
     //mTcpSocket->close();
@@ -10,16 +21,21 @@ MyTcpServer::~MyTcpServer()
     server_status=0;
 }
 
+/*!
+\brief Конструктор
+
+Конструктор для запуска сервера
+*/
 MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     mTcpServer = new QTcpServer(this);
     connect(mTcpServer, &QTcpServer::newConnection,
             this, &MyTcpServer::slotNewConnection);
 
     if(!mTcpServer->listen(QHostAddress::Any, 33335)){
-        qDebug() << "server is not started";
+        qDebug() << "Server is not started";
     } else {
         server_status=1;
-        qDebug() << "server is started";
+        qDebug() << "Server is started";
     }
 }
 
@@ -28,8 +44,11 @@ void MyTcpServer::slotNewConnection(){
         mTcpSocket = new QTcpSocket;
         mTcpSocket = mTcpServer ->nextPendingConnection();
         list.push_back(mTcpSocket);
-        qDebug() << "NewConnection";
-        mTcpSocket->write("Client connected!!!\r\n");
+        qDebug() << "New Connection";
+        mTcpSocket->write("Client connected! \r\n");
+        long long socket_id = mTcpSocket->socketDescriptor();
+//        qDebug()<< list;
+        clients.insert(mTcpSocket,socket_id);
         connect(mTcpSocket, &QTcpSocket::readyRead,
                 this,&MyTcpServer::slotServerRead);
         connect(mTcpSocket,&QTcpSocket::disconnected,
@@ -37,11 +56,16 @@ void MyTcpServer::slotNewConnection(){
     }
 }
 
+/*!
+\brief Чтение строки от пользователя
+*/
 void MyTcpServer::slotServerRead(){
     QTcpSocket *mTcpSocket = (QTcpSocket*)sender();
+    QString socket_id = QString::number(mTcpSocket->socketDescriptor());
+//    qDebug() << socket_id;
     QString str = "";
     while(mTcpSocket->bytesAvailable()>0){
-        str +=mTcpSocket->readAll();
+        str +=mTcpSocket->readAll().trimmed();
     }
     if (str.trimmed().isEmpty()){
         return;
@@ -49,13 +73,15 @@ void MyTcpServer::slotServerRead(){
     if (str.trimmed()[0] > 'z'){
         return;
     }
-
-    mTcpSocket->write(parsing(str).toUtf8());
+    mTcpSocket->write(parsing(str,socket_id).toUtf8());
 }
 
+/*!
+\brief Возможность подключения нескольких клиентов
+*/
 void MyTcpServer::slotClientDisconnected(){
     QTcpSocket* mTcpSocket = (QTcpSocket*)sender();
     list.removeAt(list.indexOf(mTcpSocket));
     mTcpSocket->close();
-    qDebug() << list.size();
+//    qDebug() << list.size() << list;
 }

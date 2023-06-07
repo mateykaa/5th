@@ -1,3 +1,10 @@
+/*!
+\file
+\brief Основной файл программы
+
+Основной файл программы из которого
+она запускается
+*/
 #include <QCoreApplication>
 #include "mytcpserver.h"
 #include "singletondb.h"
