@@ -4,10 +4,7 @@
 
 Файл с действиями сервера
 */
-#include <QDebug>
-#include <QCoreApplication>
 #include "mytcpserver.h"
-#include "C:/others/code/project/1325/func.h"
 
 /*!
 \brief Деструктор

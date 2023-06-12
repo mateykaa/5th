@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QVector>
 #include <QMap>
+#include "func.h"
 
 class MyTcpServer : public QObject
 {

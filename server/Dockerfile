@@ -1,4 +1,4 @@
-FROM ubuntu18
+FROM ubuntu
 
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -13,6 +13,7 @@ WORKDIR /root/server/
 COPY *.cpp /root/server/
 COPY *.h /root/server/
 COPY *.pro /root/server/
+COPY *.db /root/server/
 
 RUN qmake echoServer.pro
 RUN make

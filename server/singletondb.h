@@ -1,14 +1,11 @@
 #ifndef SINGLETONDB_H
 #define SINGLETONDB_H
-
-#include <QCoreApplication>
-#include <QSqlDataBase>
+#include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QVariant>
 #include <QDebug>
-#include <QSqlRecord>
 #include <QString>
 #include <vector>
 
@@ -33,7 +30,7 @@ class SingletonDB
     protected:
         SingletonDB(){
             db = QSqlDatabase::addDatabase("QSQLITE");
-            db.setDatabaseName("C:/others/code/проект на c++/13 25/Users.db"); //
+            db.setDatabaseName("Users.db"); //
             if (!db.open())
                 qDebug()<<"not connecting to the database"<<db.lastError().text();
             else {
