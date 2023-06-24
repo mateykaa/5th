@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>431</height>
+    <width>751</width>
+    <height>437</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,6 +41,13 @@
      </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="role_label">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLabel" name="log_label">
          <property name="text">
@@ -83,17 +90,42 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="teacher_button">
+         <property name="text">
+          <string>статистика</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="Stat_label">
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; text-decoration: underline;&quot;&gt;Статистика&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Задача 1 &lt;/p&gt;&lt;p&gt;Задача 2 &lt;/p&gt;&lt;p&gt;Задача 3 &lt;/p&gt;&lt;p&gt;Задача 4 &lt;/p&gt;&lt;p&gt;Задача 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="Yourstat_label">
+         <property name="text">
+          <string>Ваша статистика:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="Stat_label">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="getstat_pushbutton">
+         <property name="text">
+          <string>Получить статистику</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QPushButton" name="Exit_pushButton">
          <property name="text">
@@ -111,7 +143,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>760</width>
+     <width>751</width>
      <height>25</height>
     </rect>
    </property>

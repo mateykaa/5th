@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>522</width>
+    <height>417</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>371</width>
-     <height>281</height>
+     <width>501</width>
+     <height>401</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,30,10,0,0">
@@ -71,10 +71,31 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QLabel" name="surname_label">
+          <property name="text">
+           <string>Фамилия</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="name_label">
+          <property name="text">
+           <string>Имя</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="check_label">
+          <property name="text">
+           <string>student/teacher</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="lines_verticalLayout" stretch="0,0,0">
+       <layout class="QVBoxLayout" name="lines_verticalLayout" stretch="0,0,0,0,0,0">
         <property name="leftMargin">
          <number>30</number>
         </property>
@@ -89,6 +110,15 @@
         </item>
         <item>
          <widget class="QLineEdit" name="email_lineEdit"/>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="surname_lineEdit"/>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="name_lineEdit"/>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="check_lineEdit"/>
         </item>
        </layout>
       </item>
@@ -129,7 +159,7 @@
     <item>
      <widget class="QLabel" name="error_label">
       <property name="text">
-       <string>Неправильный логин или пароль</string>
+       <string>Ошибка авторизации</string>
       </property>
      </widget>
     </item>

@@ -8,6 +8,7 @@
 #include <QtNetwork/QTcpSocket>
 #include <QByteArray>
 #include <QDebug>
+#include <QSslSocket>
 
 class SingletonClient;
 
@@ -36,13 +37,17 @@ class SingletonClient : public QObject
     public:
         static SingletonClient* getInstance();
         void send_msg_to_server(QString message);
-    private slots:
+    public slots:
         void slotServerRead();
     signals:
         void log_in();
         void registered();
         void wrong_pass_name();
         void user_exists();
+        void teacher();
+        void student();
+        void get_stat(QString stat);
+        void get_statall(QString stat);
 };
 
 #endif // SINGLETONCLIENT_H
